@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.belerweb.central.model.User">
+		<property name="id" id="true" />
+		<property name="mobile" />
+		<property name="password" />
+		<property name="fullname" />
+		<property name="activationCode" />
+		<property name="enabled" />
+		<property name="roles" />
+		<property name="created" />
+		<property name="modified" />
+	</object>
+
+</descriptors>

@@ -13,6 +13,9 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	</beans:bean>
 
 	<authentication-manager>
+		<authentication-provider user-service-ref="userService">
+			<password-encoder hash="sha-256" />
+		</authentication-provider>
 	</authentication-manager>
 
 	<http auto-config="true" access-decision-manager-ref="accessDecisionManager" use-expressions="true"
@@ -20,7 +23,14 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		<form-login login-page="/login.html" login-processing-url="/login" always-use-default-target="true"
 			authentication-failure-url="/login.html" default-target-url="/redirect" />
 		<logout logout-url="/logout" />
-		<intercept-url pattern="/**l" access="permitAll" />
+		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/favicon.ico" access="permitAll" />
+		<intercept-url pattern="/robots.txt" access="permitAll" />
+		<intercept-url pattern="/assets/**" access="permitAll" />
+		<intercept-url pattern="/signup" access="permitAll" />
+		<intercept-url pattern="/signup/activate" access="permitAll" />
+		<intercept-url pattern="/**/*.html" access="permitAll" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
 	</http>
 
 </beans:beans>

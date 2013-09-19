@@ -1,0 +1,17 @@
+.thumbnails li {
+	position: relative;
+}
+
+.thumbnail,.thumbnail * {
+	overflow: hidden;
+}
+
+.editable {
+	cursor: default;
+}
+
+.thumbnail .label.date {
+	position: absolute;
+	right: -5px;
+	top: 60px;
+}

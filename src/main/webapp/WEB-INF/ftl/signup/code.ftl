@@ -1,0 +1,1 @@
+感谢您在${server}注册，您的登录帐号是 ${user.mobile} ，激活码是 ${user.activationCode} （6位数字）。
