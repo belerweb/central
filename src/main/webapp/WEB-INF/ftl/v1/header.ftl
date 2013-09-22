@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<htm>
+<html>
 	<#assign ContextPath=springMacroRequestContext.getContextPath() />
 	<#assign User = securityContextHolder.getContext().getAuthentication().getPrincipal().getDetail() />
 	<head>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<descriptors>
+
+	<object class="com.belerweb.central.model.App">
+		<property name="id" id="true" />
+		<property name="key" />
+		<property name="name" />
+		<property name="userId" />
+		<property name="appKey" />
+		<property name="appSecret" />
+		<property name="whiteIPs" />
+		<property name="blackIPs" />
+		<property name="development" />
+		<property name="test" />
+		<property name="production" />
+	</object>
+
+	<object class="com.belerweb.central.model.AppConfig">
+		<property name="key" />
+		<property name="value" />
+	</object>
+
+</descriptors>

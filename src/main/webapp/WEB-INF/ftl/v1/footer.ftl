@@ -6,6 +6,7 @@
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/bootstrap-editable.js"></script>
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/bootstrap-datepicker.zh-CN.js"></script>
+		<script type="text/javascript" src="${ContextPath}/assets/v1/js/jquery.form.js"></script>
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/fuelux.wizard.js"></script>
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/jquery.maskedinput.js"></script>
 		<script type="text/javascript" src="${ContextPath}/assets/v1/js/plupload.js"></script>
@@ -18,6 +19,7 @@
 		<script type="text/javascript">
 		$(function(){
 			document.title = '${Title!''}';
+			App.go('#main-content', $('#main-content').data('init'));
 			var page = window.PageContext||{};
 			if (page.init && $.isFunction(page.init)) {
 				page.init();

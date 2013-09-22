@@ -89,6 +89,14 @@ public class MongoDao implements com.googlecode.mjorm.MongoDao, InitializingBean
     return createQuery(collection).eq("_id", id).findObject(cls);
   }
 
+  public <T> T findBy(String collection, Class<T> cls, String property, Object value) {
+    return createQuery(collection).eq(property, value).findObject(cls);
+  }
+
+  public <T> List<T> findAllBy(String collection, Class<T> cls, String property, Object value) {
+    return createQuery(collection).eq(property, value).findObjects(cls).readAll();
+  }
+
   public <T> DBObject unmap(T object) {
     return mapper.unmap(object);
   }
