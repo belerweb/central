@@ -1,6 +1,7 @@
 package com.belerweb.central.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.belerweb.central.model.App;
+import com.belerweb.central.model.AppConfig;
 import com.belerweb.central.model.User;
+import com.belerweb.central.service.AppService;
 import com.belerweb.central.service.SmsService;
 import com.belerweb.central.service.TemplateService;
 import com.belerweb.central.service.UserService;
@@ -32,8 +36,48 @@ public class IndexController extends ControllerHelper {
   private SmsService smsService;
   @Autowired
   private TemplateService templateService;
+  @Autowired
+  private AppService appService;
 
-  @RequestMapping({"/", "/index.html"})
+  @RequestMapping("/")
+  public Object root(HttpServletRequest request, Model model) {
+    String serverName = request.getServerName();
+    if (!serverName.startsWith("api.")) {
+      return "redirect:/login";
+    }
+
+    if (!"post".equalsIgnoreCase(request.getMethod())) {
+      return illegal();
+    }
+
+    String key = request.getParameter("app");
+    App app = appService.getApp(key);
+    if (app == null) {
+      return illegal();
+    }
+
+    String appKey = request.getParameter("appSecret");
+    String appSecret = request.getParameter("appSecret");
+    if (!app.getAppKey().equals(appKey) || !app.getAppSecret().equals(appSecret)) {
+      return illegal();
+    }
+
+    String profile = request.getParameter("profile");
+    List<AppConfig> configs = app.getDevelopment();
+    if ("test".equals(profile)) {
+      configs = app.getTest();
+    }
+    if ("production".equals(profile)) {
+      configs = app.getProduction();
+    }
+    Map<String, String> result = new HashMap<>();
+    for (AppConfig config : configs) {
+      result.put(config.getKey(), config.getValue());
+    }
+    return json(result);
+  }
+
+  @RequestMapping("/index.html")
   public Object index(HttpServletRequest request, Model model) {
     return "redirect:/login";
   }
