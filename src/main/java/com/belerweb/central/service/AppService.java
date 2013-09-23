@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.belerweb.central.dao.MongoDao;
 import com.belerweb.central.model.App;
+import com.belerweb.central.model.AppConfig;
 
 @Service
 public class AppService {
@@ -34,6 +35,18 @@ public class AppService {
 
   public List<App> getUserApp(String userId) {
     return mongoDao.findAllBy("App", App.class, "userId", userId);
+  }
+
+  public void addAppConfig(String key, String config) {
+    AppConfig appConfig = new AppConfig();
+    appConfig.setId(UUID.randomUUID().toString());
+    mongoDao.createQuery("App").eq("key", key).modify().push(config, mongoDao.unmap(appConfig))
+        .update();
+  }
+
+  public void updateAppConfig(String configId, String config, String name, String value) {
+    mongoDao.createQuery("App").eq(config + ".id", configId).modify()
+        .set(config + ".$." + name, value).update();
   }
 
 }

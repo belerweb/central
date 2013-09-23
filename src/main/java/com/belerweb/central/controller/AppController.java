@@ -38,13 +38,24 @@ public class AppController extends ControllerHelper {
     return json(app);
   }
 
+  @RequestMapping("/app/update")
+  public Object update(@RequestParam String pk, @RequestParam String name,
+      @RequestParam String value, Model model) {
+    String[] names = name.split("\\.");
+    if (names.length != 2) {
+      return illegal();
+    }
+    appService.updateAppConfig(pk, names[0], names[1], value);
+    return ok();
+  }
+
   @RequestMapping("/app")
   public Object app(Model model) {
     model.addAttribute("apps", appService.getUserApp(getUser().getId()));
     return "/v1/apps";
   }
 
-  @RequestMapping("/app/{key}")
+  @RequestMapping("/app/show/{key}")
   public Object app(@PathVariable String key, Model model) {
     App app = appService.getApp(key);
     if (app == null || !getUser().getId().equals(app.getUserId())) {
@@ -53,6 +64,12 @@ public class AppController extends ControllerHelper {
 
     model.addAttribute("app", app);
     return "/v1/app";
+  }
+
+  @RequestMapping("/app/config/add")
+  public Object addConfig(@RequestParam String key, @RequestParam String config) {
+    appService.addAppConfig(key, config);
+    return ok();
   }
 
 }

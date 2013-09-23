@@ -16,6 +16,7 @@
 	</object>
 
 	<object class="com.belerweb.central.model.AppConfig">
+		<property name="id" />
 		<property name="key" />
 		<property name="value" />
 	</object>

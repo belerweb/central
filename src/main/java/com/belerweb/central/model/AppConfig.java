@@ -1,8 +1,17 @@
 package com.belerweb.central.model;
 
 public class AppConfig {
+  private String id;
   private String key;
   private String value;
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public String getKey() {
     return key;

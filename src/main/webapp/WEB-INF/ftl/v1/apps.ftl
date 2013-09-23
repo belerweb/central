@@ -81,7 +81,7 @@
 			$('.modal-body', dialog).append($('#page-content form').parent().html());
 		});
 		$('#page-content button[data-action=manage]').click(function(){
-			App.go('#main-content', '${ContextPath}/app/' + $(this).data('key'));
+			App.go('#main-content', '${ContextPath}/app/show/' + $(this).data('key'));
 		});
 	</script>
 </div>
