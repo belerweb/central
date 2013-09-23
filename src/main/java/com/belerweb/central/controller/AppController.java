@@ -72,4 +72,10 @@ public class AppController extends ControllerHelper {
     return ok();
   }
 
+  @RequestMapping("/app/config/delete")
+  public Object deleteConfig(@RequestParam String config, @RequestParam String configId) {
+    appService.deleteAppConfig(config, configId);
+    return ok();
+  }
+
 }

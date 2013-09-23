@@ -1,6 +1,8 @@
 package com.belerweb.central.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -49,4 +51,9 @@ public class AppService {
         .set(config + ".$." + name, value).update();
   }
 
+  public void deleteAppConfig(String config, String configId) {
+    Map<String, String> obj = new HashMap<>();
+    obj.put("id", configId);
+    mongoDao.createQuery("App").eq(config + ".id", configId).modify().pull(config, obj).update();
+  }
 }

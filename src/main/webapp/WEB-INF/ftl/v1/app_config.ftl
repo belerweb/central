@@ -28,7 +28,8 @@
 				</td>
 				<td class="td-actions center">
 					<div class="btn-group">
-						<button type="button" class="btn btn-mini btn-danger" title="删除" data-action="delete">
+						<button type="button" class="btn btn-mini btn-danger" title="删除" data-action="delete"
+							data-id="${config.id}" data-config="${id}" data-key="${config.key!?html}">
 							<i class="icon-remove bigger-120"></i>
 						</button>
 					</div>

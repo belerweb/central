@@ -4,8 +4,7 @@
 		<h3 class="header smaller lighter blue">
 			我的应用
 			<small>
-				<i class="icon-double-angle-right"></i>
-				${app.name!}
+				<i class="icon-double-angle-right"></i> ${app.name!}
 			</small>
 			<button type="button" class="btn btn-mini btn-primary pull-right" onclick="App.go('#main-content');">返回</button>
 		</h3>
@@ -58,6 +57,21 @@
 			});
 		});
 		$('#page-content button[data-action=delete]').click(function(){
+			var row = $(this).closest('tr');
+			var config = $(this).data('config');
+			var configId = $(this).data('id');
+			bootbox.confirm('确认删除配置[' + $(this).data('key') + ']?', '取消', '确认', function(result) {
+				if (result) {
+					$.post('${ContextPath}/app/config/delete', {
+						config: config,
+						configId: configId
+					}).done(function(){
+						row.remove();
+					}).fail(function(){
+						bootbox.alert('<div class="alert alert-error">删除失败。</div>');
+					});
+				}
+			});
 		});
 	</script>
 </div>
