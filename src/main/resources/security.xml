@@ -23,7 +23,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		<form-login login-page="/login.html" login-processing-url="/login" always-use-default-target="true"
 			authentication-failure-url="/login.html" default-target-url="/redirect" />
 		<logout logout-url="/logout" />
-		<intercept-url pattern="/**" requires-channel="https" />
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/favicon.ico" access="permitAll" />
 		<intercept-url pattern="/robots.txt" access="permitAll" />
