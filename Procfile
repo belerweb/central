@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/dependency/jetty-runner.jar --port $PORT target/*.war
+web: java $JAVA_OPTS -Djetty.https.port=$PORT -jar target/dependency/jetty-runner.jar --config heroku-ssl.xml target/*.war
