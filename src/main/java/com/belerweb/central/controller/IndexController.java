@@ -50,19 +50,19 @@ public class IndexController extends ControllerHelper {
       return illegal();
     }
 
-    String key = request.getParameter("app");
+    String key = request.getHeader("App");
     App app = appService.getApp(key);
     if (app == null) {
       return illegal();
     }
 
-    String appKey = request.getParameter("appSecret");
-    String appSecret = request.getParameter("appSecret");
+    String appKey = request.getHeader("App-Key");
+    String appSecret = request.getHeader("App-Secret");
     if (!app.getAppKey().equals(appKey) || !app.getAppSecret().equals(appSecret)) {
       return illegal();
     }
 
-    String profile = request.getParameter("profile");
+    String profile = request.getHeader("App-Profile");
     List<AppConfig> configs = app.getDevelopment();
     if ("test".equals(profile)) {
       configs = app.getTest();
