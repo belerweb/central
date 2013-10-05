@@ -42,7 +42,7 @@ public class IndexController extends ControllerHelper {
   @RequestMapping("/")
   public Object root(HttpServletRequest request, Model model) {
     String serverName = request.getServerName();
-    if (!serverName.startsWith("api.")) {
+    if (serverName.startsWith("www.")) {
       return "redirect:/login";
     }
 
